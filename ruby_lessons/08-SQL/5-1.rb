@@ -1,0 +1,9 @@
+20180115  assault  Hamilton: Lee, do you yield? Burr: You shot him in the side!  SQL City
+                    Yes he yields!                                                       
+
+20180115  assault  Report Not Found                                              SQL City
+
+20180115  murder   Security footage shows that there were 2 witnesses. The firs  SQL City
+                   t witness lives at the last house on "Northwestern Dr". The           
+                   second witness, named Annabel, lives somewhere on "Franklin           
+                   Ave". 
