@@ -8,7 +8,6 @@ db = SQLite3::Database.new "residents.db"
 # For each table, explain which columns should be foreign keys.
 # Please point out the weaknesses of this design. How would you do it better?
 
-
 # Answer
 # Let me explain the last tasks at first, there was a repeatable values on the database and thats not really good to see
 # The people and home relation it should be many to many since many people can have many house, as we seen people and home doesn't have pivot table

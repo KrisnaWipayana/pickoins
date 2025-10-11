@@ -1,9 +1,8 @@
-20180115  assault  Hamilton: Lee, do you yield? Burr: You shot him in the side!  SQL City
-                    Yes he yields!                                                       
+require "sqlite3"
+db = SQLite3::Database.new "residents.db"
 
-20180115  assault  Report Not Found                                              SQL City
+db.execute <<-SQL
+    INSERT INTO solution VALUES (67318, 'Jeremy Bowers');
+SQL
 
-20180115  murder   Security footage shows that there were 2 witnesses. The firs  SQL City
-                   t witness lives at the last house on "Northwestern Dr". The           
-                   second witness, named Annabel, lives somewhere on "Franklin           
-                   Ave". 
+puts "The murderer gets caught and get into the jail."
