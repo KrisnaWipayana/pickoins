@@ -51,7 +51,7 @@ export default async function CoinDetailPage({
 
       <div className="py-10 flex w-full">
         <div className="w-full border border-slate-800 rounded-lg p-6">
-          <div className="border border-slate-800 rounded-lg">
+          <div className="border border-slate-800 rounded-lg p-5">
             <CoinChart id={id}/>
           </div>
 
