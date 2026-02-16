@@ -57,7 +57,7 @@ export default async function CoinDetailPage({
 
           <div className="pt-5">
             <p>Price: ${coin.market_data.current_price.usd.toLocaleString()}</p>
-            <p>24h Change: {coin.market_data.price_change_percentage_24h.toFixed(2)}%</p>
+            <p>24h Change: {(coin.price_change_percentage_24h ?? 0).toFixed(2)}%</p>
             <p>Market Cap: ${coin.market_data.market_cap.usd.toLocaleString()}</p>
           </div>
         </div>

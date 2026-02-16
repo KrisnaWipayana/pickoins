@@ -27,9 +27,10 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={`
-          fixed md:static top-0 left-0 z-50
+          fixed top-0 left-0 z-50
           h-screen w-64
           bg-slate-950 border-r border-slate-800
+          flex flex-col
           transform transition-transform duration-200
           ${open ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0
@@ -53,6 +54,24 @@ export default function Sidebar() {
             </li>
             <li>
               <Link
+                href="/bullvsbear"
+                className="block px-4 py-2 rounded-md hover:bg-slate-800"
+                onClick={() => setOpen(false)}
+              >
+                Bull vs Bear
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/news"
+                className="block px-4 py-2 rounded-md hover:bg-slate-800"
+                onClick={() => setOpen(false)}
+              >
+                News
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/settings"
                 className="block px-4 py-2 rounded-md hover:bg-slate-800"
                 onClick={() => setOpen(false)}
@@ -60,17 +79,10 @@ export default function Sidebar() {
                 Settings
               </Link>
             </li>
-            <li>
-              <Link
-                href="/dashboard"
-                className="block px-4 py-2 rounded-md hover:bg-slate-800"
-                onClick={() => setOpen(false)}
-              >
-                Dashboard
-              </Link>
-            </li>
           </ul>
         </nav>
+        <p className="mt-auto px-6 py-4 text-sm text-slate-400 border-t border-slate-800">
+          © Lorems 2026</p>
       </aside>
     </>
   )

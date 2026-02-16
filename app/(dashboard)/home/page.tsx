@@ -66,7 +66,9 @@ export default async function HomePage() {
                       : "text-red-500"
                   }`}
                 >
-                  {coin.price_change_percentage_24h.toFixed(2)}%
+                  {typeof coin.price_change_percentage_24h === "number"
+                  ? `${coin.price_change_percentage_24h.toFixed(2)}%`
+                  : "-"}
                 </td>
 
                 <td className="p-4">
