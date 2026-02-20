@@ -1,18 +1,10 @@
+import { NextRequest } from "next/server"
+
 export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
-  const res = await fetch(
-    `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${params.id}`,
-    {
-      headers: {
-        "X-CMC_PRO_API_KEY": process.env.CMC_API_KEY!,
-      },
-      cache: "no-store",
-    }
-  );
+  const { id } = await context.params
 
-  const data = await res.json();
-
-  return Response.json(data);
+  return Response.json({ id })
 }
