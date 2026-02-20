@@ -1,59 +1,59 @@
 interface Security {
-  cik: string;
-  exchange: string;
-  isin: string;
-  name: string;
-  symbol: string;
+	cik: string;
+	exchange: string;
+	isin: string;
+	name: string;
+	symbol: string;
 }
 
 interface BullBearItem {
-  id: string;
-  bull_case: string;
-  bear_case: string;
-  ticker: string;
-  updated: number;
-  securities: Security[];
+	id: string;
+	bull_case: string;
+	bear_case: string;
+	ticker: string;
+	updated: number;
+	securities: Security[];
 }
 
 interface BullBearResponse {
-  bulls_say_bears_say: BullBearItem[];
+	bulls_say_bears_say: BullBearItem[];
 }
 
 async function getBullBear(): Promise<BullBearResponse> {
-  const apiKey = process.env.BNZ_API_KEY;
+	const apiKey = process.env.BNZ_API_KEY;
 
-  if (!apiKey) {
-    throw new Error("Missing BENZINGA_API_KEY");
-  }
+	if (!apiKey) {
+		throw new Error("Missing BENZINGA_API_KEY");
+	}
 
-  const url = new URL("https://api.benzinga.com/api/v1/bulls_bears_say");
-  url.searchParams.append("token", apiKey);
+	const url = new URL("https://api.benzinga.com/api/v1/bulls_bears_say");
+	url.searchParams.append("token", apiKey);
 	url.searchParams.append("pagesize", "3");
 	url.searchParams.append("parameters", "[3]");
 
-  const response = await fetch(url.toString(), {
-    cache: "no-store",
-  });
+	const response = await fetch(url.toString(), {
+		cache: "no-store",
+	});
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(
-      `Benzinga API Error: ${response.status} ${response.statusText} - ${errorText}`
-    );
-  }
+	if (!response.ok) {
+		const errorText = await response.text();
+		throw new Error(
+			`Benzinga API Error: ${response.status} ${response.statusText} - ${errorText}`
+		);
+	}
 
-  return response.json();
+	return response.json();
 }
 
 export default async function BullvsBear() {
 
 	const data = await getBullBear();
-  const items = data.bulls_say_bears_say;
+	const items = data.bulls_say_bears_say;
 
-  return (
+	return (
 		<div className="font-sans">
-			
-      <h1 className="text-4xl font-bold mb-8">Bull vs Bear</h1>
+
+			<h1 className="text-4xl font-bold mb-8">Bull vs Bear</h1>
 
 			{items.map((item) => (
 				<div

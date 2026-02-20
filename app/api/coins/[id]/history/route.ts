@@ -4,14 +4,18 @@ export async function GET(
 ) {
   const { id } = await context.params;
 
-  console.log("ID FROM API:", id);
-
   if (!id) {
     return Response.json({ error: "Missing ID" }, { status: 400 });
   }
 
+  const { searchParams } = new URL(req.url);
+  const daysParam = searchParams.get("days") || "30";
+
+  const allowedDays = ["1", "7", "30", "90", "365"];
+  const days = allowedDays.includes(daysParam) ? daysParam : "30";
+
   const res = await fetch(
-    `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=30`,
+    `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}`,
     {
       next: { revalidate: 120 },
     }
@@ -25,5 +29,7 @@ export async function GET(
     );
   }
 
-  return Response.json(await res.json());
+  const data = await res.json();
+
+  return Response.json(data);
 }

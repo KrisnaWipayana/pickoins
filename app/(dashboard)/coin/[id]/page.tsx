@@ -23,7 +23,7 @@ async function getCoin(id: string) {
   const res = await fetch(
     `https://api.coingecko.com/api/v3/coins/${id}`,
     {
-      next: {revalidate: 60}
+      next: { revalidate: 60 }
     }
   );
 
@@ -40,27 +40,32 @@ export default async function CoinDetailPage({
   params: Promise<{ id: string }>;
 }) {
 
-  const {id} = await params;
+  const { id } = await params;
   const coin = await getCoin(id);
 
   return (
     <section className="font-sans">
       <h1 className="text-4xl font-bold">
-        {coin.name} ({coin.symbol})
+        {coin.name} ({coin.symbol.toUpperCase()})
       </h1>
 
       <div className="py-10 flex w-full">
-        <div className="w-full border border-slate-800 rounded-lg p-6">
-          <div className="border border-slate-800 rounded-lg p-5">
-            <CoinChart id={id}/>
+        <div className="w-full border border-slate-800 rounded-lg">
+          <div className="p-6">
+            <CoinChart id={id} />
           </div>
 
-          <div className="pt-5">
-            <p>Price: ${coin.market_data.current_price.usd.toLocaleString()}</p>
-            <p>24h Change: {(coin.price_change_percentage_24h ?? 0).toFixed(2)}%</p>
-            <p>Market Cap: ${coin.market_data.market_cap.usd.toLocaleString()}</p>
+          <div className="border-t border-slate-800">
+            <div className="p-6">
+              <p>Price: ${coin.market_data.current_price.usd.toLocaleString()}</p>
+              <p>Market Cap: ${coin.market_data.market_cap.usd.toLocaleString()}</p>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div>
+        <h1 className="text-2xl font-bold">News about {coin.name}</h1>
       </div>
     </section>
   );
