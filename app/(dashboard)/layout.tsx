@@ -1,4 +1,5 @@
 import Sidebar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -22,6 +23,7 @@ export default function DashboardLayout({
       <main className="flex-1 p-10 md:ml-64">
         {children}
       </main>
+      <Footer/>
     </div>
   );
 }
