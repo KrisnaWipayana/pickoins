@@ -80,7 +80,8 @@ export default function CoinChart({ id }: Props) {
     const fetchInitial = async () => {
       try {
         const res = await fetch(
-          `/api/klines?symbol=${symbol}&interval=${interval}&limit=200`
+          `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=200`,
+          { signal: controller.signal }
         );
 
         if (!res.ok) return;
